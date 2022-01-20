@@ -14,7 +14,6 @@ object HttpDao {
             .baseUrl("https://ct24.ceskatelevize.cz/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        //TODO create retrofit functions here
 
         val articles = MutableLiveData<ArticlesResponse>();
         fun getArticles(): LiveData<ArticlesResponse> {
