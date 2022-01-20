@@ -1,7 +1,5 @@
-package com.simon.ct24news;
+package com.simon.ct24news
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
 
-public class ArticleFragment extends Fragment {
-
-}
+class ArticleFragment : Fragment()
