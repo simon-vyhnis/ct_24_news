@@ -10,7 +10,8 @@
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/articleFragment"

@@ -15,9 +15,8 @@ object HttpDao {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val articles = MutableLiveData<ArticlesResponse>();
+        val articles = MutableLiveData<ArticlesResponse>()
         fun getArticles(): LiveData<ArticlesResponse> {
-            Log.i("HTTP","Getting articles")
             val api = retrofit.create(CtApi::class.java)
             val call = api.getArticles()
             call.enqueue(object :Callback<ArticlesResponse>{
@@ -37,4 +36,26 @@ object HttpDao {
             })
             return articles
         }
+
+    val article = MutableLiveData<ArticleResponse>()
+    fun getArticle(id: String) : LiveData<ArticleResponse>{
+        val api = retrofit.create(CtApi::class.java)
+        val call = api.getArticle(id)
+        call.enqueue(object :Callback<ArticleResponse>{
+            override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>
+            ) {
+                if(response.isSuccessful) {
+                    article.postValue(response.body())
+                }else{
+                    Log.e("HTTP",""+response.code())
+                }
+            }
+
+            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
+        return article
+    }
 }
